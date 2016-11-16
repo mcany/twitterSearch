@@ -10,5 +10,7 @@
 
 @interface TweetSearchView : UIView
 
+@property (nonatomic, strong) UITableView *tweetsTableView;
+@property (nonatomic, strong) UITextField *searchTextField;
 
 @end
