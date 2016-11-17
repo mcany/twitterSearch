@@ -14,8 +14,6 @@
 
 // class
 #import "SearchMetadata.h"
-#import "SearchStatuses.h"
-
 
 @interface TweetSearch : MTLModel <MTLJSONSerializing>
 

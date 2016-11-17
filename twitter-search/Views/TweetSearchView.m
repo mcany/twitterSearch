@@ -15,8 +15,8 @@
 #import "TweetSearchTableViewCell.h"
 #import "TweetSearchTableViewCell2.h"
 
-
 @interface TweetSearchView()
+
 @property (nonatomic, strong) UIView *headerView;
 
 @property (nonatomic, strong) UIView *middleView;

@@ -109,16 +109,8 @@
 		CA06DED81DDB70CD00326C20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CA06DED91DDB713700326C20 /* TweetSearchView.h */,
-				CA06DEDA1DDB713700326C20 /* TweetSearchView.m */,
-				CA06DEDC1DDB753200326C20 /* TweetSearchTableViewCell.h */,
-				CA06DEDD1DDB753200326C20 /* TweetSearchTableViewCell.m */,
-				CA06DEE81DDC31C100326C20 /* TweetSearchTableViewCell2.h */,
-				CA06DEE91DDC31C100326C20 /* TweetSearchTableViewCell2.m */,
-				CA06DEDF1DDB793C00326C20 /* TweetSearchViewController.h */,
-				CA06DEE01DDB793C00326C20 /* TweetSearchViewController.m */,
-				CA06DEE21DDB879400326C20 /* TweetSearchTableViewComponent.h */,
-				CA06DEE31DDB879400326C20 /* TweetSearchTableViewComponent.m */,
+				CA94E34D1DDE06B60040E90B /* DetailView */,
+				CA94E34C1DDE06AB0040E90B /* MasterView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +175,30 @@
 				CA2CD0AF1DDB6A3E0061A019 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA94E34C1DDE06AB0040E90B /* MasterView */ = {
+			isa = PBXGroup;
+			children = (
+				CA06DED91DDB713700326C20 /* TweetSearchView.h */,
+				CA06DEDA1DDB713700326C20 /* TweetSearchView.m */,
+				CA06DEDC1DDB753200326C20 /* TweetSearchTableViewCell.h */,
+				CA06DEDD1DDB753200326C20 /* TweetSearchTableViewCell.m */,
+				CA06DEE81DDC31C100326C20 /* TweetSearchTableViewCell2.h */,
+				CA06DEE91DDC31C100326C20 /* TweetSearchTableViewCell2.m */,
+				CA06DEDF1DDB793C00326C20 /* TweetSearchViewController.h */,
+				CA06DEE01DDB793C00326C20 /* TweetSearchViewController.m */,
+				CA06DEE21DDB879400326C20 /* TweetSearchTableViewComponent.h */,
+				CA06DEE31DDB879400326C20 /* TweetSearchTableViewComponent.m */,
+			);
+			name = MasterView;
+			sourceTree = "<group>";
+		};
+		CA94E34D1DDE06B60040E90B /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DetailView;
 			sourceTree = "<group>";
 		};
 		CAF625B61DDCD0DA003CACF1 /* Models */ = {

@@ -8,7 +8,6 @@
 
 #import "APIManager.h"
 
-
 @implementation APIManager
 
 #define RESULTS_PERPAGE @"100"

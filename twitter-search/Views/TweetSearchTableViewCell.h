@@ -10,7 +10,9 @@
 
 @interface TweetSearchTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIView *circleView;
+@property (nonatomic, strong) UIImageView *circleView;
 @property (nonatomic, strong) UILabel *label;
+
+-(void)setCircleViewImageWithURL:(NSURL *)url;
 
 @end

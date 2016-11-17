@@ -10,6 +10,7 @@ def twitter_search_pods
     
     #networking
     pod 'AFNetworking', '~> 3.1'
+    pod 'SDWebImage', '3.7.3'
     
     #ui-helpers
     pod 'Masonry', '1.0.2'

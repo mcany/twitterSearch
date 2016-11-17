@@ -11,7 +11,6 @@
 // library
 #import <Mantle/Mantle.h>
 
-
 @interface TweetUser : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy, readonly) NSURL *profileImageURL;

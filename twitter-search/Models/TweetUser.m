@@ -18,14 +18,14 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"profileImageURL" : @"profile_image_url",
+             @"profileImageURL" : @"profile_image_url_https",
              @"createdAt" : @"created_at",
              @"id" : @"id",
              @"profileBackgroundColor" : @"profile_background_color",
              @"location" : @"location",
              @"screenName" : @"screen_name",
              @"url" : @"url",
-             @"profileBackgroundImageURL" : @"profile_background_image_url",
+             @"profileBackgroundImageURL" : @"profile_background_image_url_https",
              @"followersCount" : @"followers_count"
              };
 }

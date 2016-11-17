@@ -10,6 +10,8 @@
 
 // library
 #import "Masonry.h"
+#import "UIImageView+WebCache.h"
+#import "ReactiveCocoa.h"
 
 @implementation TweetSearchTableViewCell
 
@@ -19,7 +21,7 @@
         self.clipsToBounds = YES; // just to make sure we're calculating the height correctly
         [self.layer setMasksToBounds:YES];
         
-        UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,20,20)];
+        UIImageView *circleView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,20,20)];
         circleView.layer.cornerRadius = 10;
         self.circleView = circleView;
         [self.contentView addSubview:self.circleView];
@@ -46,9 +48,29 @@
         make.left.equalTo(self.contentView).offset(16);
     }];
     [self.label mas_updateConstraints:^(MASConstraintMaker *make) {
-        //make.left.equalTo(self.circleView.mas_right).offset(16);
-        //make.right.bottom.top.equalTo(self.contentView);
-        make.center.equalTo(self.contentView);
+        make.left.equalTo(self.circleView.mas_right).offset(16);
+        make.right.bottom.top.equalTo(self.contentView);
+    }];
+}
+
+-(void)setCircleViewImageWithURL:(NSURL *)url{
+
+    UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    
+    [self.circleView addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+    [activityIndicator mas_updateConstraints: ^(MASConstraintMaker *make) {
+        make.center.equalTo(self.circleView);
+    }];
+    
+    @weakify(activityIndicator);
+    [self.circleView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        @strongify(activityIndicator);
+        [self.circleView setImage:image];
+        [activityIndicator stopAnimating];
+        [activityIndicator removeFromSuperview];
     }];
 }
 

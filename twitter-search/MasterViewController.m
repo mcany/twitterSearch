@@ -21,12 +21,10 @@
 #import "UIManager.h"
 
 @interface MasterViewController ()
+
 @property (nonatomic, strong) MasterViewViewModel *viewModel;
 @property (nonatomic, strong) TweetSearchView *tweetSearchView;
 @property (nonatomic, strong) TweetSearchTableViewComponent *tweetSearchTableViewComponent;
-
-@property (strong, nonatomic) IBOutlet UITableView *tweetSearchTableView;
-@property (nonatomic, copy) NSArray *objects;
 
 @end
 
@@ -42,11 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //    self.navigationItem.rightBarButtonItem = addButton;
+
     self.viewModel = [MasterViewViewModel new];
     self.tweetSearchView = [[TweetSearchView alloc] init];
     [self.view addSubview:self.tweetSearchView];

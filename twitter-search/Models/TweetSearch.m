@@ -8,6 +8,9 @@
 
 #import "TweetSearch.h"
 
+// class
+#import "SearchStatuses.h"
+
 @implementation TweetSearch
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
