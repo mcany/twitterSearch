@@ -12,25 +12,13 @@
 #import "TweetSearchTableViewCell.h"
 #import "TweetSearchTableViewCell2.h"
 
-
 @interface TweetSearchTableViewComponent()
 
-@property (nonatomic, strong) NSArray *items;
+//@property (nonatomic, strong) NSArray *statuses;
 
 @end
 
 @implementation TweetSearchTableViewComponent
-
-- (instancetype)initWithArray:(NSArray *)items{
-    self = [super init];
-    
-    if (!self) {
-        return nil;
-    }
-    
-    self.items = items;
-    return self;
-}
 
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -38,25 +26,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.items.count;
+    return self.search ? [self.search count] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier1 = @"TweetsListCell1";
     static NSString *CellIdentifier2 = @"TweetsListCell2";
         
-    id cellItem = [self.items objectAtIndex:indexPath.section];
+    SearchStatuses *cellItem = [self.search.statuses objectAtIndex:indexPath.section];
     
     if (indexPath.row % 2 == 1) {
         TweetSearchTableViewCell *cell = (TweetSearchTableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-        [cell.label setText:cellItem];
+        [cell.label setText:cellItem.text];
         [cell layoutSubviews];
         return cell;
     }
     
     else {
         TweetSearchTableViewCell2 *cell = (TweetSearchTableViewCell2 *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
-        [cell.label setText:cellItem];
+        [cell.label setText:cellItem.text];
         [cell layoutSubviews];
         return cell;
     }

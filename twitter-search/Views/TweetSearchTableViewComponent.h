@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+// class
+#import "TweetSearch.h"
+
 @interface TweetSearchTableViewComponent : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-- (instancetype)initWithArray:(NSArray *)items;
+@property (nonatomic, strong) TweetSearch *search;
 
 @end
