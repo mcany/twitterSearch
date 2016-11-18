@@ -56,14 +56,11 @@
     [self.tweetSearchView.tweetsTableView setDataSource:self.tweetSearchTableViewComponent];
     [self.tweetSearchView.searchTextField setDelegate:self];
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    // RAC
-    [self searchTweetsWithKeyword:self.tweetSearchView.searchTextField.text];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
+    [self searchTweetsWithKeyword:self.tweetSearchView.searchTextField.text];
 }
 
 - (void)searchTweetsWithKeyword:(NSString *)keyword{
@@ -98,8 +95,14 @@
     } error:^(NSError *error) {
         @strongify(self);
         [UIManager dismissHUD];
-        UIAlertController *alert= [UIManager showErrorWithMessage:error.description];
-        [self presentViewController:alert animated:YES completion:nil];
+        if(error.code == 100){
+            UIAlertController *alert= [UIManager showErrorWithMessage:@"Next Result URL is null. Maybe try again later?"];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else{
+            UIAlertController *alert= [UIManager showErrorWithMessage:error.description];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
         self.tweetSearchTableViewComponent.isLoading = NO;
     }];
     
@@ -112,7 +115,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tweetSearchView.tweetsTableView indexPathForSelectedRow];
         SearchStatuses *object = [self.viewModel searchStatusesAtIndex:indexPath.row];
         if (object) {
@@ -121,7 +124,7 @@
             controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
             controller.navigationItem.leftItemsSupplementBackButton = YES;
         }
-     }
+    }
 }
 
 #pragma mark textField

@@ -28,6 +28,9 @@
 }
 
 - (RACSignal *)nextResults{
+    if (!self.search.searchMetadata.nextResults) {
+        return [RACSignal error:[[NSError alloc] initWithDomain:@"" code:100 userInfo:nil]];
+    }
     return [[APIManager searchNext:self.search.searchMetadata.nextResults] map:^id(id value) {
         self.search = [MTLJSONAdapter modelOfClass:[TweetSearch class] fromJSONDictionary:value error:nil];
         return self.search;
