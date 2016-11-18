@@ -10,24 +10,12 @@
 
 @implementation APIManager
 
-#define RESULTS_PERPAGE @"100"
 static NSString * const oauthBase64Header = @"Basic NWJjcFFXa2RKZVFQNENQdlZ4SG9OdjhrdTpvWGtTYXVVcnBtNFhvWmhvTXVVSWVHTURneFZnVFRxemhxeFJPdzJZYURmd05jQm5VTg==";
-
-static NSString * const kAPIURL = @"https://api.twitter.com";
 static NSString * const searchEndpoint = @"/1.1/search/tweets.json";
-
 static NSString * const oauthEndpoint = @"/oauth2/token";
 
-
-//static NSString * const oauthExp = @"OAuth oauth_consumer_key=\"DC0sePOBbQ8bYdC8r4Smg\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1479316572\",oauth_nonce=\"-151747780\",oauth_version=\"1.0\",oauth_token=\"422538661-p1aAYPGaT2BVr9e32as6ESYEv8lijyMkJegZXBld\",oauth_signature=\"OCmDUH1YWk4WoSOMxf4RTYAHSSk%3D\"";
-
-//OAuth oauth_consumer_key="DC0sePOBbQ8bYdC8r4Smg",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1479317549",oauth_nonce="3441617247",oauth_version="1.0",oauth_token="422538661-p1aAYPGaT2BVr9e32as6ESYEv8lijyMkJegZXBld",oauth_signature="AmmoySCANiMoxFN5I9UZUTRQzJk%3D"
-
-
-//https://api.twitter.com/1.1/search/tweets.json?q=test
-
 + (NSString *)baseAPIURLString {
-    return kAPIURL; //[[[NSBundle mainBundle] infoDictionary] valueForKey:@"APIBaseURLString"];
+    return [[[NSBundle mainBundle] infoDictionary] valueForKey:@"twitterBaseAPIURL"];
 }
 
 #pragma mark - Search
@@ -93,7 +81,6 @@ static NSString * const oauthEndpoint = @"/oauth2/token";
                                                            }
                                                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                                                [subscriber sendError:error];
-                                                               
                                                            }
                                       ];
         return [RACDisposable disposableWithBlock: ^{
@@ -130,14 +117,10 @@ static NSString * const oauthEndpoint = @"/oauth2/token";
 
 @implementation APIClient : AFHTTPSessionManager
 
-//NSString * const oauth_consumer_key = @"DC0sePOBbQ8bYdC8r4Smg";
 NSString * const oauthSignatureMethod = @"HMAC-SHA1";
 NSString * const oauthBase64 = @"Basic NWJjcFFXa2RKZVFQNENQdlZ4SG9OdjhrdTpvWGtTYXVVcnBtNFhvWmhvTXVVSWVHTURneFZnVFRxemhxeFJPdzJZYURmd05jQm5VTg==";
-//NSString * const oauth_timestamp = @"1479316572";
 NSString * const oauthNonce = @"-151747780";
 NSString * const oauthVersion = @"1.0";
-//NSString * const oauth_token = @"p1aAYPGaT2BVr9e32as6ESYEv8lijyMkJegZXBld";
-//NSString * const oauth_signature = @"OCmDUH1YWk4WoSOMxf4RTYAHSSk";
 NSString * const oauth = @"OAuth oauth_consumer_key=%@,oauth_signature_method=%@,oauth_timestamp=%@,oauth_nonce=%@,oauth_version=%@,oauth_token=%@,oauth_signature=%@";
 NSString * const basic = @"Basic %@";
 NSString * const bearer = @"Bearer %@";

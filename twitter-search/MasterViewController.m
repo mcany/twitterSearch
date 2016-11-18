@@ -58,7 +58,7 @@
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // RAC
-    [self searchTweetsWithKeyword:@"test"];
+    [self searchTweetsWithKeyword:self.tweetSearchView.searchTextField.text];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,7 +109,6 @@
 
 -(void)cellSelectedAtIndex:(NSInteger)index{
     [self performSegueWithIdentifier:@"showDetail" sender:self];
-    //[self prepareForSegue:nil sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

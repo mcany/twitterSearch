@@ -51,8 +51,9 @@
 - (UITextField *)searchTextField {
     if(!_searchTextField){
         UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.headerView.frame), CGRectGetHeight(self.headerView.frame))];
-        [searchTextField setText:@"testest"];
+        [searchTextField setText:@"test"];
         [searchTextField setTextAlignment:NSTextAlignmentCenter];
+        [searchTextField setBorderStyle:UITextBorderStyleLine];
         [self.headerView addSubview:searchTextField];
         self.searchTextField = searchTextField;
     }

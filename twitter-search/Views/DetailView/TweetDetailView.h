@@ -16,5 +16,4 @@
 
 @property (nonatomic, strong) UILabel *tweet;
 
-
 @end

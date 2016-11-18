@@ -77,16 +77,6 @@
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
         <!--Master-->
-        <scene sceneID="smW-Zh-WAh">
-            <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="709" y="-630"/>
-        </scene>
-        <!--Master-->
         <scene sceneID="fnu-4G-APu">
             <objects>
                 <viewController title="Master" id="U6G-5R-WKR" customClass="MasterViewController" sceneMemberID="viewController">
