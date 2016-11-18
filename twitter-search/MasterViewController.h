@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+// protocol
+#import "TableCellSelected.h"
+#import "PaginationNextResult.h"
+
 @class DetailViewController;
 
-@interface MasterViewController : UIViewController
+@interface MasterViewController : UIViewController <TableCellSelected, PaginationNextResult>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

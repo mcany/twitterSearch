@@ -25,7 +25,7 @@
 }
 
 - (NSInteger)count{
-    return [self.searchMetadata.count integerValue];
+    return [self.statuses count];
 }
 
 -(void)setStatuses:(NSArray *)statuses{

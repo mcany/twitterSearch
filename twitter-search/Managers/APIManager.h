@@ -14,14 +14,22 @@
 
 @interface APIManager : NSObject
 
++ (RACSignal *)refreshToken;
 + (RACSignal *)search:(NSString *)keyword;
++ (RACSignal *)searchNext:(NSString *)url;
 
 @end
 
 
 @interface APIClient : AFHTTPSessionManager
+@property (strong, nonatomic) NSString *token;
+@property (nonatomic) BOOL isRefreshed;
+
 + (instancetype)sharedClient;
-- (void)setAuthToken:(NSString *)token;
+- (void)setAuthorizationOauthHeader;
+- (void)setAuthorizationBasicHeader;
+- (void)setAuthorizationBearerHeader;
+- (NSString *) twitterAuthorizationBasichHeader;
 @end
 /// NSError userInfo key that will contain response data
 static NSString *const ResponseSerializerKey = @"ResponseSerializerKey";

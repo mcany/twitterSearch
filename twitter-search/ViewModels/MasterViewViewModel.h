@@ -13,11 +13,14 @@
 
 // class
 #import "TweetSearch.h"
+#import "SearchStatuses.h"
 
 @interface MasterViewViewModel : NSObject
 
 @property (nonatomic, strong) TweetSearch *search;
 
 - (RACSignal *)searchTweetsWithKeyword:(NSString *)keyword;
+- (SearchStatuses *)searchStatusesAtIndex:(NSInteger)index;
+- (RACSignal *)nextResults;
 
 @end

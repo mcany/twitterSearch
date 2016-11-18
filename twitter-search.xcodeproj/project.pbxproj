@@ -23,6 +23,7 @@
 		CA2CD0BE1DDB6A3E0061A019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2CD0BD1DDB6A3E0061A019 /* Assets.xcassets */; };
 		CA2CD0C11DDB6A3E0061A019 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2CD0BF1DDB6A3E0061A019 /* LaunchScreen.storyboard */; };
 		CA40DE901DDE20DB0088332A /* TweetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA40DE8F1DDE20DB0088332A /* TweetDetailView.m */; };
+		CAB0F03E1DDECC6600F59C2D /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB0F03D1DDECC6600F59C2D /* UIColor+HEX.m */; };
 		CAF625B91DDCD132003CACF1 /* TweetSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF625B81DDCD132003CACF1 /* TweetSearch.m */; };
 		CAF625BC1DDCD1AA003CACF1 /* SearchMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF625BB1DDCD1AA003CACF1 /* SearchMetadata.m */; };
 		CAF625BF1DDCD1D2003CACF1 /* SearchStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF625BE1DDCD1D2003CACF1 /* SearchStatuses.m */; };
@@ -62,6 +63,10 @@
 		CA2CD0C21DDB6A3E0061A019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA40DE8E1DDE20DB0088332A /* TweetDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailView.h; sourceTree = "<group>"; };
 		CA40DE8F1DDE20DB0088332A /* TweetDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailView.m; sourceTree = "<group>"; };
+		CA65EEAA1DDE2B2300A97373 /* TableCellSelected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TableCellSelected.h; path = Protocols/TableCellSelected.h; sourceTree = "<group>"; };
+		CAB0F03C1DDECC6600F59C2D /* UIColor+HEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HEX.h"; sourceTree = "<group>"; };
+		CAB0F03D1DDECC6600F59C2D /* UIColor+HEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HEX.m"; sourceTree = "<group>"; };
+		CAB0F0651DDF21AB00F59C2D /* PaginationNextResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaginationNextResult.h; sourceTree = "<group>"; };
 		CAF625B71DDCD132003CACF1 /* TweetSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetSearch.h; sourceTree = "<group>"; };
 		CAF625B81DDCD132003CACF1 /* TweetSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetSearch.m; sourceTree = "<group>"; };
 		CAF625BA1DDCD1AA003CACF1 /* SearchMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMetadata.h; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 		CA2CD0AD1DDB6A3E0061A019 /* twitter-search */ = {
 			isa = PBXGroup;
 			children = (
+				CA65EEA91DDE2AD500A97373 /* Protocols */,
 				CAF625CA1DDD8A04003CACF1 /* Formatters */,
 				CA06DEEB1DDC3B6100326C20 /* Managers */,
 				CAF625B61DDCD0DA003CACF1 /* Models */,
@@ -178,6 +184,15 @@
 				CA2CD0AF1DDB6A3E0061A019 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA65EEA91DDE2AD500A97373 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CA65EEAA1DDE2B2300A97373 /* TableCellSelected.h */,
+				CAB0F0651DDF21AB00F59C2D /* PaginationNextResult.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		CA94E34C1DDE06AB0040E90B /* MasterView */ = {
@@ -235,6 +250,8 @@
 			children = (
 				CAF625CB1DDD8A2A003CACF1 /* Formatters.h */,
 				CAF625CC1DDD8A2A003CACF1 /* Formatters.m */,
+				CAB0F03C1DDECC6600F59C2D /* UIColor+HEX.h */,
+				CAB0F03D1DDECC6600F59C2D /* UIColor+HEX.m */,
 			);
 			path = Formatters;
 			sourceTree = "<group>";
@@ -370,6 +387,7 @@
 				CA2CD0B31DDB6A3E0061A019 /* AppDelegate.m in Sources */,
 				CA06DEEA1DDC31C100326C20 /* TweetSearchTableViewCell2.m in Sources */,
 				CAF625B91DDCD132003CACF1 /* TweetSearch.m in Sources */,
+				CAB0F03E1DDECC6600F59C2D /* UIColor+HEX.m in Sources */,
 				CA2CD0B61DDB6A3E0061A019 /* MasterViewController.m in Sources */,
 				CA2CD0B01DDB6A3E0061A019 /* main.m in Sources */,
 				CAF625BF1DDCD1D2003CACF1 /* SearchStatuses.m in Sources */,

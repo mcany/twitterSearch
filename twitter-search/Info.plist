@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>twitterSignature</key>
+	<string>OCmDUH1YWk4WoSOMxf4RTYAHSSk</string>
+	<key>twitterConsumerKey</key>
+	<string>DC0sePOBbQ8bYdC8r4Smg</string>
+	<key>twitterToken</key>
+	<string>p1aAYPGaT2BVr9e32as6ESYEv8lijyMkJegZXBld</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

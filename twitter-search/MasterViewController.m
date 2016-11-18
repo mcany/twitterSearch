@@ -20,7 +20,7 @@
 #import "TweetSearchTableViewComponent.h"
 #import "UIManager.h"
 
-@interface MasterViewController ()
+@interface MasterViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) MasterViewViewModel *viewModel;
 @property (nonatomic, strong) TweetSearchView *tweetSearchView;
@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.viewModel = [MasterViewViewModel new];
     self.tweetSearchView = [[TweetSearchView alloc] init];
     [self.view addSubview:self.tweetSearchView];
@@ -50,9 +50,11 @@
     }];
     
     self.tweetSearchTableViewComponent = [[TweetSearchTableViewComponent alloc] init];
+    [self.tweetSearchTableViewComponent setCellSelectedDelegate:self];
+    [self.tweetSearchTableViewComponent setNextResultDelegate:self];
     [self.tweetSearchView.tweetsTableView setDelegate:self.tweetSearchTableViewComponent];
     [self.tweetSearchView.tweetsTableView setDataSource:self.tweetSearchTableViewComponent];
-    
+    [self.tweetSearchView.searchTextField setDelegate:self];
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // RAC
@@ -72,7 +74,7 @@
         [UIManager dismissHUD];
         self.tweetSearchTableViewComponent.search = search;
         [self.tweetSearchView.tweetsTableView reloadData];
-
+        
     } error:^(NSError *error) {
         @strongify(self);
         [UIManager dismissHUD];
@@ -81,17 +83,62 @@
     }];
 }
 
+- (void)loadNextPage {
+    if (self.tweetSearchTableViewComponent.isLoading) return;
+    self.tweetSearchTableViewComponent.isLoading = YES;
+    
+    [UIManager showHUD];
+    @weakify(self);
+    [[self.viewModel nextResults] subscribeNext:^(TweetSearch *search) {
+        @strongify(self);
+        [UIManager dismissHUD];
+        self.tweetSearchTableViewComponent.search = search;
+        [self.tweetSearchView.tweetsTableView reloadData];
+        self.tweetSearchTableViewComponent.isLoading = NO;
+    } error:^(NSError *error) {
+        @strongify(self);
+        [UIManager dismissHUD];
+        UIAlertController *alert= [UIManager showErrorWithMessage:error.description];
+        [self presentViewController:alert animated:YES completion:nil];
+        self.tweetSearchTableViewComponent.isLoading = NO;
+    }];
+    
+}
+
 #pragma mark - Segues
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = self.objects[indexPath.row];
-//        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-//        [controller setDetailItem:object];
-//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-//        controller.navigationItem.leftItemsSupplementBackButton = YES;
-//    }
-//}
+-(void)cellSelectedAtIndex:(NSInteger)index{
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    //[self prepareForSegue:nil sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tweetSearchView.tweetsTableView indexPathForSelectedRow];
+        SearchStatuses *object = [self.viewModel searchStatusesAtIndex:indexPath.row];
+        if (object) {
+            DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
+            [controller setDetailItem:object];
+            controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+            controller.navigationItem.leftItemsSupplementBackButton = YES;
+        }
+     }
+}
+
+#pragma mark textField
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == self.tweetSearchView.searchTextField) {
+        NSString *keyword = textField.text;
+        [self searchTweetsWithKeyword:keyword];
+    }
+}
 
 @end

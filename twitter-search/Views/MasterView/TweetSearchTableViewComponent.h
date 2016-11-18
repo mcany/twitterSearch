@@ -11,8 +11,16 @@
 // class
 #import "TweetSearch.h"
 
+// protocol
+#import "TableCellSelected.h"
+#import "PaginationNextResult.h"
+
 @interface TweetSearchTableViewComponent : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic) id  <TableCellSelected> cellSelectedDelegate;
+@property (nonatomic) id  <PaginationNextResult> nextResultDelegate;
+
 @property (nonatomic, strong) TweetSearch *search;
+@property (nonatomic, assign) BOOL isLoading;
 
 @end

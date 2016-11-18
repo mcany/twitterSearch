@@ -19,6 +19,16 @@
 
 @implementation TweetSearchTableViewComponent
 
+- (instancetype)init{
+    self = [super init];
+    
+    if (!self) {
+        return nil;
+    }
+    self.isLoading = false;
+    return self;
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -26,6 +36,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.search ? [self.search count] : 0;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Check scrolled percentage
+    //
+    CGFloat yOffset = tableView.contentOffset.y;
+    CGFloat height = tableView.contentSize.height - tableView.rowHeight;
+    CGFloat scrolledPercentage = yOffset / height;
+    
+    
+    // Check if all the conditions are met to allow loading the next page
+    //
+    if (scrolledPercentage > .2f && !self.isLoading){
+        [self.nextResultDelegate loadNextPage];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,4 +78,9 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.cellSelectedDelegate) {
+        [self.cellSelectedDelegate cellSelectedAtIndex:indexPath.row];
+    }
+}
 @end

@@ -10,4 +10,11 @@
 
 @interface TweetDetailView : UIView
 
+@property (nonatomic, strong) UIImageView *profileImage;
+@property (nonatomic, strong) UILabel *profileName;
+@property (nonatomic, strong) UIImageView *profileBackgroundImage;
+
+@property (nonatomic, strong) UILabel *tweet;
+
+
 @end

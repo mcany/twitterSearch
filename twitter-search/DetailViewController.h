@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+// class
+#import "SearchStatuses.h"
+
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) NSDate *detailItem;
+@property (strong, nonatomic) SearchStatuses *detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
